@@ -16,6 +16,7 @@ public class AppConfig{
         employeeList.add(new Employee("2", "Volkan", "Tastemir"));
         employeeList.add(new Employee("3", "Enes", "Satici"));
         employeeList.add(new Employee("4", "Omer", "Ozay"));
+        employeeList.add(new Employee("5", "Mertcan", "Gundogan"));
         return employeeList;
     }
 }

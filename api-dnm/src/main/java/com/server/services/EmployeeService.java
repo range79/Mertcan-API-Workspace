@@ -15,4 +15,17 @@ public class EmployeeService {
     public List<Employee> getAllEmployeeList(){
         return employeeRepository.getAllEmployeeList();
     }
+
+    public Employee getEmployeeById(String id){
+        return employeeRepository.getEmployeeById(id);
+    }
+
+    public List<Employee> getEmployeeWithParams(String firstname, String lastname){
+        return employeeRepository.getEmployeeWithParams(firstname,lastname);
+    }
+
+    public void postEmployee(String firstname, String lastname){
+        String id = String.valueOf(employeeRepository.getAllEmployeeList().toArray().length+1);
+        employeeRepository.postEmployee(id,firstname,lastname);
+    }
 }
