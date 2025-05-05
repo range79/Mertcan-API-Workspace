@@ -2,6 +2,7 @@ package com.server.controller;
 
 import java.util.List;
 import com.server.model.Employee;
+import com.server.model.UpdateEmployeeRequest;
 import com.server.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +30,18 @@ public class RestEmployeeController {
         return employeeService.getEmployeeWithParams(firstname,lastname);
     }
 
-    @PostMapping(path = "/post")
-    public void postEmployee(@RequestParam(name = "firstname") String firstname,
-                             @RequestParam(name = "lastname") String lastname){
-        employeeService.postEmployee(firstname, lastname);
+    @PostMapping(path = "/save-employee")
+    public Employee saveEmployee(@RequestBody Employee newEmployee){
+        return employeeService.saveEmployee(newEmployee);
+    }
+
+    @DeleteMapping(path = "/delete-employee/{id}")
+    public boolean deleteEmployee(@PathVariable(name = "id") String id){
+        return employeeService.deleteEmployee(id);
+    }
+
+    @PutMapping(path = "/update-employee/{id}")
+    public Employee updateEmployee(@PathVariable(name = "id") String id,@RequestBody UpdateEmployeeRequest request){
+        return employeeService.updateEmployee(id,request);
     }
 }
