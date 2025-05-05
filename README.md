@@ -1,1 +1,1 @@
-İstanbul Medeniyet Üniversitesi Bilgisayar Mühendisliği 1. sınıf bahar dönemi proje ödevinin kaynak dosyaları zamanla buraya eklenecektir.
+API denemek için yapılmış basit bir örnek projedir, iskelet form olarak kullanılabilir.
