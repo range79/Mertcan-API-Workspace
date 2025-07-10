@@ -1,9 +1,7 @@
 package com.server.repository;
 
-import com.server.config.AppConfig;
+import com.server.dto.EmployeeDto;
 import com.server.model.Employee;
-import com.server.model.UpdateEmployeeRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -12,8 +10,10 @@ import java.util.List;
 @Repository
 public class EmployeeRepository {
 
-    @Autowired
-    private List<Employee> employeeList;
+    public EmployeeRepository(List<Employee> employeeList){
+        this.employeeList = employeeList;
+    }
+    private final List<Employee> employeeList;
 
     public List<Employee> getAllEmployeeList(){
         return employeeList;
@@ -60,7 +60,7 @@ public class EmployeeRepository {
         return flag;
     }
 
-    public Employee updateEmployee(String id, UpdateEmployeeRequest request){
+    public Employee updateEmployee(String id, EmployeeDto request){
         Employee putEmployee = null;
         for(Employee employee : employeeList){
             if(employee.getId().equalsIgnoreCase(id)){

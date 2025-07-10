@@ -1,18 +1,21 @@
 package com.server.controller;
 
-import java.util.List;
+import com.server.dto.EmployeeDto;
 import com.server.model.Employee;
-import com.server.model.UpdateEmployeeRequest;
 import com.server.services.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("rest/api/employee")
 public class RestEmployeeController {
 
-    @Autowired
-    private EmployeeService employeeService;
+
+    private final EmployeeService employeeService;
+    public RestEmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @GetMapping(path = "/list")
     public List<Employee> getAllEmployeeList(){
@@ -20,14 +23,13 @@ public class RestEmployeeController {
     }
 
     @GetMapping(path = "/list/{id}")
-    public Employee getEmployeeById(@PathVariable(name = "id" , required = true) String id){
+    public Employee getEmployeeById(@PathVariable(name = "id") String id){
         return employeeService.getEmployeeById(id);
     }
 
     @GetMapping(path = "/with-param")
-    public List<Employee> getEmployeeWithParams(@RequestParam(name = "firstname",required = false) String firstname,
-                                                @RequestParam(name = "lastname",required = false) String lastname){
-        return employeeService.getEmployeeWithParams(firstname,lastname);
+    public List<Employee> getEmployeeWithParams(@RequestBody(required = false) EmployeeDto e){
+        return employeeService.getEmployeeWithParams(e);
     }
 
     @PostMapping(path = "/save-employee")
@@ -41,7 +43,7 @@ public class RestEmployeeController {
     }
 
     @PutMapping(path = "/update-employee/{id}")
-    public Employee updateEmployee(@PathVariable(name = "id") String id,@RequestBody UpdateEmployeeRequest request){
+    public Employee updateEmployee(@PathVariable(name = "id") String id,@RequestBody EmployeeDto request){
         return employeeService.updateEmployee(id,request);
     }
 }

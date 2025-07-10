@@ -1,11 +1,11 @@
-package com.server.model;
+package com.server.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UpdateEmployeeRequest {
+public class EmployeeDto {
     private String firstname;
     private String lastname;
 }
